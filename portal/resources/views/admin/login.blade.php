@@ -66,9 +66,6 @@
 							</div>
 							<nav class="nav nav-pills nav-justified">
 								<a class="nav-item nav-link active">Admin</a>
-								@if(config('custom.gaurds') == 1)
-								<a class="nav-item nav-link" href="{{url('guard')}}"> {{config('custom.guard')}}</a>
-								@endif
 								@if(config('custom.contractor') == 1)
 								<a class="nav-item nav-link " href="{{url('contractor')}}">Sub Contractor</a>
 								@endif
