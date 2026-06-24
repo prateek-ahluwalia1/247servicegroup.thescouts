@@ -56,12 +56,7 @@
 							</div>
 							<nav class="nav nav-pills nav-justified">
 								<a class="nav-item nav-link "  href="{{url('/')}}">Admin</a>
-								<a class="nav-item nav-link" href="{{url('guard')}}"> {{config('custom.guard')}}</a>
-								<a class="nav-item nav-link" href="{{url('customer')}}">Customer</a>
-								<a class="nav-item nav-link active ">Contractor</a>
-								@if(config('custom.support') == 1)
-								<a class="nav-item nav-link " href="{{url('support')}}">Support</a>
-								@endif
+								<a class="nav-item nav-link active ">Sub Contractor</a>
 							  </nav>
 							  <br>
 							  

@@ -242,7 +242,7 @@ Route::any('/admin/admin_pdf', [Administrator::class, 'admin_pdf']);
 //customer
 
 
-Route::any('customer', [Customers::class, 'customer']);
+// Route::any('customer', [Customers::class, 'customer']);
 Route::any('customer/contacts_form', [Customers::class, 'contacts_form']);
 Route::any('customers_login', [Customers::class, 'do_login']);
 
@@ -638,7 +638,7 @@ Route::any('count_likes', [Feeds::class, 'count_likes']);
 
 // Guard routes
 
-Route::any('guard', [Guards::class, 'login']);
+// Route::any('guard', [Guards::class, 'login']);
 Route::any('guard_login', [Guards::class, 'do_login']);
 Route::any('guard/forgot_password', [Guards::class, 'forgot_password']);
 Route::any('guard_reset_password', [Guards::class, 'guard_reset_password']);
