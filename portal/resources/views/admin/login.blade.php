@@ -69,14 +69,8 @@
 								@if(config('custom.gaurds') == 1)
 								<a class="nav-item nav-link" href="{{url('guard')}}"> {{config('custom.guard')}}</a>
 								@endif
-								@if(config('custom.customer') == 1)
-								<a class="nav-item nav-link" href="{{url('customer')}}">Customer</a>
-								@endif
 								@if(config('custom.contractor') == 1)
-								<a class="nav-item nav-link " href="{{url('contractor')}}">Contractor</a>
-								@endif
-								@if(config('custom.support') == 1)
-								<a class="nav-item nav-link " href="{{url('support')}}">Support</a>
+								<a class="nav-item nav-link " href="{{url('contractor')}}">Sub Contractor</a>
 								@endif
 								
 							  </nav>

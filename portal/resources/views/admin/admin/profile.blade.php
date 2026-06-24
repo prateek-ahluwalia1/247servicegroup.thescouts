@@ -1068,37 +1068,6 @@
 														<!--end::Input-->
 													</div>
 													<!--end::Input group-->
-													<!--begin::Input group-->
-													<div class="mb-7">
-														<!--begin::Label-->
-														<label class="required fw-bold fs-6 mb-5">Role</label>
-														<!--end::Label-->
-														<!--begin::Roles-->
-														<!--begin::Input row-->
-								@foreach($roles as $role)
-														<div class="d-flex fv-row">
-															<!--begin::Radio-->
-															<div class="form-check form-check-custom form-check-solid">
-																<!--begin::Input-->
-															<input class="form-check-input me-3" name="user_role" type="radio" value="{{$role->id}}" id="role_{{$role->id}}"  />
-															<!-- <input class="form-check-input me-3" name="user_role_id" type="hidden" value="{{$role->id}}" id="role_hidden_{{$role->id}}"  /> -->
-
-																<!--end::Input-->
-																<!--begin::Label-->
-																<label class="form-check-label" for="kt_modal_update_role_option_0">
-																	<div class="fw-bolder text-gray-800" id="{{$role->title}}">{{$role->title}}</div>
-																	<div class="text-gray-600"></div>
-																</label>
-																<!--end::Label-->
-															</div>
-															<!--end::Radio-->
-														</div>
-														<!--end::Input row-->
-														<div class='separator separator-dashed my-5'></div>
-												@endforeach
-														<!--end::Roles-->
-													</div>
-													<!--end::Input group-->
 												</div>
 												<!--end::Scroll-->
 												<!--begin::Actions-->
