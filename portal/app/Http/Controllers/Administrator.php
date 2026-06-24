@@ -156,10 +156,10 @@ public function do_login(Request $request)
   $google2fa = new Google2FA();
         // $password = $this->encryptPassword($request->input('password'));
   if (!$request->has('password') || !$request->has('email')) {
-    return redirect('/')->with('msg', 'Invalid Login Details');
+    return redirect('/')->with('msg', 'Invalid Login Details 1');
   }
   if ($request->password == '' || $request->email == '') {
-    return redirect('/')->with('msg', 'Invalid Login Details');
+    return redirect('/')->with('msg', 'Invalid Login Details 2');
   }
   if(config('custom.authenticator') == 1){
   $qr = DB::table('google2fa_secret')->first();
@@ -174,7 +174,7 @@ public function do_login(Request $request)
   ->where(['email' => $request->input('email')])->select('administrators.*', 'acces_level_defination.permissions')
   ->first();
   if (empty($admin)) {
-    return redirect('/')->with('msg', 'Invalid Login Details');
+    return redirect('/')->with('msg', 'Invalid Login Details 3');
   }
   if (Hash::check($request->input('password'), $admin->password) && $admin->status == 'active') {
     if ($admin->permissions != '') {
@@ -213,10 +213,10 @@ public function do_login(Request $request)
       'colors' => $colors
     ]);
       // dd($config_arr);
-    return redirect('/')->with('msg', 'Invalid Login Details');
+    return redirect('/')->with('msg', 'Invalid Login Details 4');
 
   }else{
-    return redirect('/')->with('msg', 'Invalid Login Details');
+    return redirect('/')->with('msg', 'Invalid Login Details 5');
   }
 
         // dd($request->session());

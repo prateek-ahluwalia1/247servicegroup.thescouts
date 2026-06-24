@@ -47,7 +47,7 @@
 							<div class="text-center mb-10">
 								<!--begin::Title-->
 								<h1 class="text-dark mb-3">{{ config('custom.title')}}</h1>
-								<h5 class="text-dark mb-3" >Login to Contractor</h5>
+								<h5 class="text-dark mb-3" >Login to Sub Contractor</h5>
 								<!--end::Title-->
 								<!--begin::Link-->
 								<!-- <div class="text-gray-400 fw-bold fs-4">New Here?
