@@ -263,11 +263,8 @@
 
         <script>
             	  $( document ).ready(function() {
-                    roster_progress();
-
 
                     count_dashboard();
-                    shifts_hour_chart();
  
                     @foreach($new_guards as $guards)
 	        	@if($guards->profile_image  == NULL)

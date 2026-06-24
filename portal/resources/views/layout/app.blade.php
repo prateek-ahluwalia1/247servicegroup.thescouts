@@ -260,29 +260,6 @@ Swal.fire({
 
 
    }
-
-function roster_progress(){
-	$.ajax({type: "POST",url:"{{url('roster_progress')}}",data:{_token:'<?php echo csrf_token();?>'} ,success: function(result){
-	var 	dash_completed_shifts=result.completed_shifts;
-	var 	dash_months=result.months;
-	var dash_shifts=result.shifts;
-	roster_progress_append(dash_shifts, dash_completed_shifts, dash_months, result.completed_jobs, result.upcoming_jobs, result.hours);
-	}
-});
-   }
-
-   function shifts_hour_chart(){
-
-	$.ajax({type: "POST",url:"{{url('shifts_hour_chart')}}",data:{_token:'<?php echo csrf_token();?>'} ,success: function(result){
-
-	var dash_shifts=result.shifts;
-	get_chart(dash_shifts,result.hours,result.months);
-	}
-});
-        
-
-}
-
   function call_spinner(){
 									let timerInterval;
 									Swal.fire({

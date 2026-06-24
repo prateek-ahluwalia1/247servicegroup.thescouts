@@ -651,11 +651,11 @@ $dat['permissions'] = json_encode($data);
 
           $name=  $_POST['user_name'];
 
-          $access = $_POST['user_role'];
+          // $access = $_POST['user_role'];
 
 
           $email = $_POST['user_email'];
-          $access = $_POST['user_role'];
+          // $access = $_POST['user_role'];
 
           $multiple_states=[];
           if($request->has('multiple_states')){
@@ -664,7 +664,7 @@ $dat['permissions'] = json_encode($data);
           $state=$request->state;
 
 
-          $query=  DB::table('administrators')->where('id', $id)->update(['name' => $name,'email' => $email,'image' =>$filename ,'access_level_id' => $access, 'state' => $state, 'specific_customer' => $specific_customer, 'specific_sites' => $specific_sites ,'multiple_states' => $multiple_states, 'status' => $request->status ]);
+          $query=  DB::table('administrators')->where('id', $id)->update(['name' => $name,'email' => $email,'image' =>$filename , 'state' => $state, 'specific_customer' => $specific_customer, 'specific_sites' => $specific_sites ,'multiple_states' => $multiple_states, 'status' => $request->status ]);
           if($query){
                             // return redirect('/')->with('msg', 'Record Updated');
             header("Refresh:0");
