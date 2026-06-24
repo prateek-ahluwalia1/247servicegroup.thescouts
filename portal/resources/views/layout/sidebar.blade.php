@@ -322,31 +322,6 @@ if (session()->has('isAdmin')) {
                     </div>
                     @endif
                     @endif
-                    @if($item->permissions === '1')
-                    @if(session()->get('userType') == 'admin' && $is_super_admin == 1)
-                    <div class="sidebar-item " data-rbd-draggable-context-id="0" data-rbd-draggable-id="directory"
-                        data-v-d4a9e6b5="">
-                        <div class="item-container" data-v-d4a9e6b5="">
-                            <a href="{{url('access')}}">
-                                <div class="item-inner-container" data-v-d4a9e6b5="">
-                                    <img tabindex="0" role="button" aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                        data-rbd-drag-handle-draggable-id="directory"
-                                        data-rbd-drag-handle-context-id="0" draggable="false" class="  drag-handle"
-                                        data-v-d4a9e6b5="">
-                                    <img class="item-icon drag-animation-item-icon" data-v-d4a9e6b5=""
-                                        style="background-color: rgb(46, 217, 185);"
-                                        src="https://img.icons8.com/ios-filled/48/000000/user-rights.png" /><span
-                                        class="item-name" style="margin-left:2px" data-v-5aa85418="">Permissions</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    @endif
-                    @endif
-
-
-                    <!--  {{-- </div> --}} -->
-
                 </div>
             </div>
         </div>
@@ -1664,24 +1639,6 @@ if (session()->has('isAdmin')) {
                                     src="https://img.icons8.com/ios/30/000000/user-male-circle.png" data-v-d4a9e6b5=""
                                     style="background-color: rgb(46, 217, 185);">
                                 <div class="name-container" data-v-d4a9e6b5="">{{config('custom.guard')}}</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                @endif
-                @if(session()->get('userType') == 'admin' && $is_super_admin == 1)
-                <div class="sidebar-item " data-rbd-draggable-context-id="0" data-rbd-draggable-id="directory"
-                    data-v-d4a9e6b5="">
-                    <div class="item-container" data-v-d4a9e6b5="">
-                        <a href="{{url('access')}}">
-                            <div class="item-inner-container" data-v-d4a9e6b5="">
-                                <img tabindex="0" role="button" aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                    data-rbd-drag-handle-draggable-id="directory" data-rbd-drag-handle-context-id="0"
-                                    draggable="false" class="  drag-handle" data-v-d4a9e6b5="">
-                                <img class="item-icon drag-animation-item-icon" data-v-d4a9e6b5=""
-                                    style="background-color: rgb(46, 217, 185);"
-                                    src="https://img.icons8.com/ios-filled/48/000000/user-rights.png" /><span
-                                    class="item-name" style="margin-left:2px" data-v-5aa85418="">Permissions</span>
                             </div>
                         </a>
                     </div>
