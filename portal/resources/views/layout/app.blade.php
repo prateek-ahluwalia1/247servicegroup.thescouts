@@ -9,7 +9,6 @@
 	@yield('pageCss')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
 
- 		 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS-DB39Kk-Z25C5GWymVGshXIALbjXPGY&libraries=places"></script>
 		  <link rel="stylesheet" href="{{asset('')}}richtext/richtext.min.css">
 
 <?php 
