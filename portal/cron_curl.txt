@@ -1,0 +1,6 @@
+curl --request GET "https://eliteguards.247staffingsolutions.com.au/apis/public/api/v1/profile_incomplete_notification" > /dev/null
+
+curl --request GET "http://amg.247staffingsolutions.com.au/portal/cron12HoursShifts" > /dev/null
+
+
+https://amg.247staffingsolutions.com.au/portal/api/v1/RosterReport

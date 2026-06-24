@@ -1,0 +1,38 @@
+portal/node_modules
+portal/public/hot
+portal/public
+portal/storage/logs
+apis/storage/logs
+# apis/public/uploads/*
+portal/storage/*.key
+portal/vendor
+portal/vendor/*
+portal/config/custom.php
+portal/config/database.php
+portal/.env
+portal/.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+portal.env
+portal/config/custom.php
+portal/.htaccess
+# portal/uploads
+# portal/storage
+portal/publicuploads
+apis/.env
+apis/config/*
+asset_uploads/*
+portal/vendor
+apis/vendor
+apis/vendor
+apis/public/uploads
+# files
+.htaccess
+portal/sql.txt
+asset_uploads

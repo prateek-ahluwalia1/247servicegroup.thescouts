@@ -1,0 +1,48 @@
+ALTER TABLE `administrators` ADD `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `code_expiry`, ADD `image` VARCHAR(128) NULL DEFAULT NULL AFTER `updated_at`, ADD `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `image`;
+
+CREATE TABLE `app_basic_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `primary_color` LONGTEXT NOT NULL , `secondary_color` LONGTEXT NOT NULL , `cover` VARCHAR(64) NOT NULL , `first_green_call` VARCHAR(32) NOT NULL , `second_green_call` VARCHAR(32) NOT NULL , `shift_decline_button` BOOLEAN NOT NULL DEFAULT FALSE , `asap_decline_button` BOOLEAN NOT NULL DEFAULT FALSE , `admin_user` INT NOT NULL , `operations_user` INT NOT NULL , `hr_user` INT NOT NULL , `payroll_user` INT NOT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+
+CREATE TABLE `app_notifications_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `new_roster` BOOLEAN NOT NULL DEFAULT TRUE , `profile_udpate` BOOLEAN NOT NULL DEFAULT TRUE , `tasks_add` BOOLEAN NOT NULL DEFAULT TRUE , `tasks_reminder` BOOLEAN NOT NULL DEFAULT TRUE , `shift_update` BOOLEAN NOT NULL DEFAULT TRUE , `shift_delete` BOOLEAN NOT NULL DEFAULT TRUE , `asap_job` BOOLEAN NOT NULL DEFAULT TRUE , `announcemnet` BOOLEAN NOT NULL DEFAULT TRUE , `induction` BOOLEAN NOT NULL DEFAULT TRUE , `chat` BOOLEAN NOT NULL DEFAULT TRUE , `leave_approval` BOOLEAN NOT NULL DEFAULT TRUE , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+CREATE TABLE `app_features_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `tasks` BOOLEAN NOT NULL DEFAULT TRUE , `break` BOOLEAN NOT NULL DEFAULT TRUE , `geo_fencing` BOOLEAN NOT NULL DEFAULT TRUE ,  `asap_job` BOOLEAN NOT NULL DEFAULT TRUE , `announcemnet` BOOLEAN NOT NULL DEFAULT TRUE , `induction` BOOLEAN NOT NULL DEFAULT TRUE , `chat` BOOLEAN NOT NULL DEFAULT TRUE , `leave` BOOLEAN NOT NULL DEFAULT TRUE , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `app_features_settings` ADD `clock_in_selfie` BOOLEAN NOT NULL DEFAULT TRUE AFTER `updated_at`, ADD `clock_in_note` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_in_selfie`, ADD `clock_out_note` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_in_note`, ADD `clock_out_selfie` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_out_note`, ADD `clock_in_auto` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_out_selfie`, ADD `clock_out_auto` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_in_auto`, ADD `clock_in_allow` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_out_auto`;
+
+CREATE TABLE `contractor_contacts` ( `id` BIGINT NOT NULL AUTO_INCREMENT , `contractor_id` INT NOT NULL , `name` VARCHAR(64) NOT NULL , `email` VARCHAR(64) NOT NULL , `phone` VARBINARY(255) NOT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `contractors` ADD `image` VARCHAR(64) NOT NULL AFTER `url`, ADD `charged_rates_id` INT(11) NOT NULL AFTER `image`, ADD `updated_at` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL DEFAULT CURRENT_TIMESTAMP AFTER `charged_rates_id`, ADD `last_login` TIMESTAMP NULL DEFAULT NULL DEFAULT CURRENT_TIMESTAMP AFTER `updated_at`;
+
+
+ALTER TABLE `customers` ADD `image` VARCHAR(64) NOT NULL AFTER `flat_metro_weekend_sun`, ADD `charged_rates_id` INT(11) NULL DEFAULT NULL AFTER `image`, ADD `last_login` TIMESTAMP NULL DEFAULT NULL DEFAULT CURRENT_TIMESTAMP AFTER `charged_rates_id`;
+
+ALTER TABLE `guards` ADD `updated_at` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `residential_status_secondary`, ADD `payrates_id` INT(11) NULL DEFAULT NULL AFTER `updated_at`, ADD `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `payrates_id`, ADD `guard_availability` LONGTEXT NULL DEFAULT NULL AFTER `last_login`, ADD `uniform_status` TINYINT NOT NULL DEFAULT '0' AFTER `guard_availability`, ADD `annual_leave_hours` FLOAT NULL DEFAULT '0' AFTER `uniform_status`, ADD `sick_leave_hours` FLOAT NOT NULL DEFAULT '0' AFTER `annual_leave_hours`, ADD `uniform_type` LONGTEXT NULL AFTER `sick_leave_hours`;
+
+
+CREATE TABLE `guard_annual_leaves` ( `id` INT NOT NULL AUTO_INCREMENT , `guard_id` INT(11) NOT NULL , `roster_id` INT(11) NOT NULL , `start_time` INT(11) NOT NULL , `end_time` INT(11) NOT NULL , `hours` VARCHAR(11) NOT NULL , `created_at` DATETIME NOT NULL , `updated_at` DATETIME on update CURRENT_TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+ALTER TABLE `guard_annual_leaves` ADD `type` VARCHAR(128) NOT NULL AFTER `hours`;
+
+ALTER TABLE `job_roster_activities` CHANGE `last_location_time` `last_location_time` VARCHAR(32) NULL DEFAULT NULL;
+
+ALTER TABLE `guard_annual_leaves` ADD `paid_hour` INT(11) NOT NULL DEFAULT '0' AFTER `updated_at`, ADD `nonpaid_hour` INT(11) NOT NULL DEFAULT '0' AFTER `paid_hour`;
+
+ALTER TABLE `inbox` ADD `seen` INT(2) NOT NULL DEFAULT '0' AFTER `TIMESTAMP_LAST_UPDATED`;
+
+CREATE TABLE `induction_seen_status` ( `id` INT NOT NULL AUTO_INCREMENT , `induction_id` INT NOT NULL , `guard_id` INT NOT NULL , `status` ENUM('seen','unseen') NOT NULL DEFAULT 'unseen' , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `jobs` ADD `updated_at` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `fatigue`;
+
+ALTER TABLE `job_new_roster` ADD `training` INT(1) NOT NULL DEFAULT '0' AFTER `admin_approved`, ADD `continuation` INT(1) NOT NULL DEFAULT '0' AFTER `training`, ADD `travel_time` FLOAT NOT NULL AFTER `continuation`, ADD `updated_at` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `travel_time`, ADD `custom_rates` ENUM('yes', 'no') NOT NULL DEFAULT 'no' AFTER `updated_at`, ADD `payrate_id` INT(11) NULL AFTER `custom_rates`, ADD `chargerate_id` INT(11) NULL AFTER `payrate_id`, ADD `hours` INT(11) NULL AFTER `chargerate_id`;
+
+ALTER TABLE `job_roster_activities` CHANGE `last_location_time` `last_location_time` VARCHAR(32) NULL DEFAULT NULL;
+
+ALTER TABLE `shiftnotes` ADD `title` VARCHAR(64) NULL DEFAULT NULL AFTER `seen_by`;
+
+ALTER TABLE `shiftnotes` CHANGE `notes` `notes` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+ALTER TABLE `job_new_roster` ADD `admin_approved` ENUM('yes','no') NOT NULL DEFAULT 'no' AFTER `rejected_by`;
+
+
+

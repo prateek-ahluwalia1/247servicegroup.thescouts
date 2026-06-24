@@ -1,0 +1,140 @@
+ALTER TABLE `job_new_roster` ADD `last_send_notification` VARCHAR(11) NULL DEFAULT NULL AFTER `custom_charge_rate`;
+
+ALTER TABLE `contractors` ADD `image` VARCHAR(64) NULL DEFAULT NULL
+
+ALTER TABLE `customers` ADD `image` VARCHAR(64) NULL DEFAULT NULL
+
+ALTER TABLE `contractors` ADD `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `contractors` CHANGE `password` `password` VARCHAR(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+ALTER TABLE `contactor_contacts` CHANGE `id` `id` BIGINT(20) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+
+
+
+//make sure to change db name 
+
+CREATE TABLE `payrates` ( `id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(64) NULL DEFAULT NULL , `state` INT NULL DEFAULT NULL , `level` INT NULL DEFAULT NULL , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `flat_metro_flat_metro_week_day` INT NULL DEFAULT NULL , `flat_metro_weekend` INT NULL DEFAULT NULL , `flat_metro_public_holiday` INT NULL DEFAULT NULL , `flat_regional_week_day` INT NULL DEFAULT NULL , `flat_regional_weekend` INT NULL DEFAULT NULL , `flat_regional_public_holiday` INT NULL DEFAULT NULL , `job_level` INT NULL DEFAULT NULL , `eba_metro_weekday_day` INT NULL DEFAULT NULL , `eba_metro_weekday_afternoon` INT NULL DEFAULT NULL , `eba_metro_weekday_night` INT NULL DEFAULT NULL , `eba_metro_weekend` INT NULL DEFAULT NULL , `eba_metro_public_holiday` INT NULL DEFAULT NULL , `eba_regional_weekday_day` INT NULL DEFAULT NULL , `eba_regional_weekday_afternoon` INT NULL DEFAULT NULL , `eba_regional_weekday_night` INT NULL DEFAULT NULL , `eba_regional_weekend` INT NULL DEFAULT NULL , `eba_regional_public_holiday` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+
+
+ALTER TABLE `payrates` CHANGE `updated_at` `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `payrates` CHANGE `created_at` `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `payrates` CHANGE `state` `state` VARCHAR(32) NULL DEFAULT NULL;
+
+
+ALTER TABLE `guards` ADD `payrates_id` INT NULL ;
+
+
+ALTER TABLE `guards` ADD `residential_status_secondary` VARCHAR(32) NULL DEFAULT NULL;
+
+
+
+
+
+
+//charged rate
+
+
+CREATE TABLE `charged_rates` ( `id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(64) NULL DEFAULT NULL , `state` INT NULL DEFAULT NULL , `level` INT NULL DEFAULT NULL , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `flat_metro_flat_metro_week_day` INT NULL DEFAULT NULL , `flat_metro_weekend` INT NULL DEFAULT NULL , `flat_metro_public_holiday` INT NULL DEFAULT NULL , `flat_regional_week_day` INT NULL DEFAULT NULL , `flat_regional_weekend` INT NULL DEFAULT NULL , `flat_regional_public_holiday` INT NULL DEFAULT NULL , `job_level` INT NULL DEFAULT NULL , `eba_metro_weekday_day` INT NULL DEFAULT NULL , `eba_metro_weekday_afternoon` INT NULL DEFAULT NULL , `eba_metro_weekday_night` INT NULL DEFAULT NULL , `eba_metro_weekend` INT NULL DEFAULT NULL , `eba_metro_public_holiday` INT NULL DEFAULT NULL , `eba_regional_weekday_day` INT NULL DEFAULT NULL , `eba_regional_weekday_afternoon` INT NULL DEFAULT NULL , `eba_regional_weekday_night` INT NULL DEFAULT NULL , `eba_regional_weekend` INT NULL DEFAULT NULL , `eba_regional_public_holiday` INT NULL DEFAULT NULL ,`customer_id` INT NULL DEFAULT NULL ,`contractor_id` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+ALTER TABLE `charged_rates` CHANGE `updated_at` `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `charged_rates` CHANGE `created_at` `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `charged_rates` CHANGE `state` `state` VARCHAR(32) NULL DEFAULT NULL;
+
+ALTER TABLE `customers` ADD `charged_rates_id` INT NULL DEFAULT NULL;
+
+ALTER TABLE `contractors` ADD `charged_rates_id` INT NULL DEFAULT NULL ;
+
+
+ALTER TABLE `contractors` ADD `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP;
+
+
+
+CREATE TABLE `feed` ( `id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(64) NULL DEFAULT NULL , `html_body` VARCHAR(64) NOT NULL , `TIMESTAMP_INSERTED` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `TIMESTAMP_LAST_UPDATED` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `status` ENUM('active', 'inactive', 'deleted') NULL DEFAULT NULL , `post_by_name` VARCHAR(32) NULL DEFAULT NULL , `post_by_image` VARCHAR(64) NULL DEFAULT NULL , `post_by_role` VARCHAR(32) NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+ALTER TABLE `feed` CHANGE `html_body` `html_body` VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+
+ALTER TABLE `feed` CHANGE `status` `status` ENUM('active','inactive','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'active';
+
+
+//comments
+
+
+CREATE TABLE `feed_comments` ( `id` INT NOT NULL AUTO_INCREMENT , `message` LONGTEXT NULL DEFAULT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `commented_by_id` INT NULL DEFAULT NULL , `feed_id` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+ALTER TABLE `feed_comments` ADD `name` VARCHAR(64) NULL DEFAULT NULL AFTER `feed_id`, ADD `image` VARCHAR(64) NULL DEFAULT NULL AFTER `name`;
+
+
+CREATE TABLE `feed_likes` ( `id` INT NOT NULL AUTO_INCREMENT , `liked_by_id` INT NULL DEFAULT NULL , `feed_id` INT NULL DEFAULT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+
+ALTER TABLE `feed_likes` ADD `liked_by_name` VARCHAR(64) NULL DEFAULT NULL AFTER `created_at`;
+
+
+ALTER TABLE `shiftnotes` ADD `title` VARCHAR(64) NULL DEFAULT NULL AFTER `seen_by`;
+
+ALTER TABLE `shiftnotes` CHANGE `notes` `notes` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+
+
+ALTER TABLE `administrators` ADD `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
+
+ALTER TABLE `customers` ADD `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `contractors` ADD `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+ALTER TABLE `guards` ADD `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
+ALTER TABLE `feed` ADD `post_by_id` INT NULL DEFAULT NULL AFTER `post_by_role`;
+
+
+
+
+
+CREATE TABLE `app_basic_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `primary_color` LONGTEXT NOT NULL , `secondary_color` LONGTEXT NOT NULL , `cover` VARCHAR(64) NOT NULL , `first_green_call` VARCHAR(32) NOT NULL , `second_green_call` VARCHAR(32) NOT NULL , `shift_decline_button` BOOLEAN NOT NULL DEFAULT FALSE , `asap_decline_button` BOOLEAN NOT NULL DEFAULT FALSE , `admin_user` INT NOT NULL , `operations_user` INT NOT NULL , `hr_user` INT NOT NULL , `payroll_user` INT NOT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+
+CREATE TABLE `app_notifications_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `new_roster` BOOLEAN NOT NULL DEFAULT TRUE , `profile_udpate` BOOLEAN NOT NULL DEFAULT TRUE , `tasks_add` BOOLEAN NOT NULL DEFAULT TRUE , `tasks_reminder` BOOLEAN NOT NULL DEFAULT TRUE , `shift_update` BOOLEAN NOT NULL DEFAULT TRUE , `shift_delete` BOOLEAN NOT NULL DEFAULT TRUE , `asap_job` BOOLEAN NOT NULL DEFAULT TRUE , `announcemnet` BOOLEAN NOT NULL DEFAULT TRUE , `induction` BOOLEAN NOT NULL DEFAULT TRUE , `chat` BOOLEAN NOT NULL DEFAULT TRUE , `leave_approval` BOOLEAN NOT NULL DEFAULT TRUE , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+CREATE TABLE `app_features_settings` ( `id` INT NOT NULL AUTO_INCREMENT , `tasks` BOOLEAN NOT NULL DEFAULT TRUE , `break` BOOLEAN NOT NULL DEFAULT TRUE , `geo_fencing` BOOLEAN NOT NULL DEFAULT TRUE ,  `asap_job` BOOLEAN NOT NULL DEFAULT TRUE , `announcemnet` BOOLEAN NOT NULL DEFAULT TRUE , `induction` BOOLEAN NOT NULL DEFAULT TRUE , `chat` BOOLEAN NOT NULL DEFAULT TRUE , `leave` BOOLEAN NOT NULL DEFAULT TRUE , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `app_features_settings` ADD `clock_in_selfie` BOOLEAN NOT NULL DEFAULT TRUE AFTER `updated_at`, ADD `clock_in_note` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_in_selfie`, ADD `clock_out_note` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_in_note`, ADD `clock_out_selfie` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_out_note`, ADD `clock_in_auto` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_out_selfie`, ADD `clock_out_auto` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_in_auto`, ADD `clock_in_allow` BOOLEAN NOT NULL DEFAULT TRUE AFTER `clock_out_auto`;
+
+
+
+ALTER TABLE `business_data` ADD `type_of_bussiness` ENUM('guard','staff','cleaner') NOT NULL AFTER `business_type`;
+
+all done
+
+
+
+
+..,chat
+
+ALTER TABLE `inbox` ADD `seen` TINYINT(10) NOT NULL DEFAULT '0' AFTER `TIMESTAMP_LAST_UPDATED`;
+
+
+
+
+adftaetrte
+
+-- 
+ALTER TABLE `guards` ADD `guard_availability` LONGTEXT NULL DEFAULT NULL AFTER `last_login`;
+
+
+
+
+ALTER TABLE `guards` CHANGE `uniform_type` `uniform_type` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;

@@ -1,0 +1,27 @@
+User-agent: *
+Disallow: /
+
+User-agent: Googlebot-Image
+Disallow: /
+
+
+User-agent: Googlebot-Image
+Disallow: /asset_uploads/*
+
+
+
+User-agent: *
+Disallow: /asset_uploads/*
+
+User-agent: *
+Crawl-delay: 1
+
+# Directories
+Disallow: /asset_uploads/
+
+# Paths (clean URLs)
+Disallow: https://https://eliteguards.247staffingsolutions.com.au/asset_uploads/
+Disallow: https://https://eliteguards.247staffingsolutions.com.au/asset_uploads/
+Disallow: /asset_uploads/
+Disallow: https://https://eliteguards.247staffingsolutions.com.au/uploads/
+Disallow: https://https://eliteguards.247staffingsolutions.com.au/uploads/
